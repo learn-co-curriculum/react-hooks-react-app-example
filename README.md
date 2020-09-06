@@ -99,81 +99,60 @@ contents of the components. If you copy and paste `<ExampleComponent />` so it
 is listed two times in a row, _two_ GIFs will appear on the page. Try this now.
 
 What about the rest of `App.js`, though? Moving out from the middle, we see this
-JSX code is the _return_ value of a function, `render()`. This function is
-contained within a `class`:
-
-```js
-class App extends Component {
-  render() {
-
-    return (
-      // JSX goes here!
-    )
-  }
-}
-```
-
-
-We will go into greater depth on things like `extends Component`, but for now,
-the key thing to understand is that all of the _visible content_ of our app is
-contained within this App class.
-
-We've already seen that it is possible to have multiple files that contain
-visible content, i.e., by using both `App` and `ExampleComponent`.
-`ExampleComponent`, however, is used within `App`. `App` is at the top-most
-level, the _parent component_ of our React app content.
-
-## Heads Up!
-`create-react-app` version 3.0.0 was released April 22, 2019. It
-makes a small change that defines `App` slightly differently. When you run
-`create-react-app` it may generate `class App extends Component` if you have
-an old version, or `function App() {` if you have a newer version. Both are
-fine. Don't be surprised if you see an `App` that looks like the code block
-below.
+JSX code is the _return_ value of a function called App:
 
 ```js
 function App() {
+
   return (
     // JSX goes here!
   )
 }
 ```
 
-If you ever find you need class component features (like `.state`) you can
-change `App` from a function to a class and write out the class's `render()`
-method.
+
+The key thing to understand is that all of the _visible content_ of our app is
+returned from this App function.
+
+We've already seen that it is possible to have multiple files that contain
+visible content, i.e., by using both `App` and `ExampleComponent`.
+`ExampleComponent`, however, is used within `App`. `App` is at the top-most
+level, the _parent component_ of our React app content.
 
 ## Importing, Exporting, and the Component Chain
 
 There are two other things in the `App.js` file we haven't touched on:
 
 ```js
-import React, { Component } from 'react'
+import React from 'react'
 import moment from 'moment'
 import ExampleComponent from './ExampleComponent'
 import TestComponent from './TestComponent'
 
-// class blah blah extends whatever render something etc...
+// function App() { etc
 
 export default App
 ```
 
 `react` and `moment` are both npm packages, so what is happening here? `App.js`
 is _pulling in_ specific content from these two packages! You can see in the App
-class that `Component` and `moment` are both being used in the `render()`
-method. They are being _imported_ from the `node_modules` folder.
+function that `moment` is both being used in the return statement. `react` is also
+being used, even though you can't see it written in the code - anywhere you write JSX 
+inside a component is actually _transpiled_ to Javascript code that looks like this: 
+`React.createElement(tagName, props, children)` (more on that later!). `react` and `moment` 
+are being _imported_ from the `node_modules` folder.
 
 The imports for `ExampleComponent` and `TestComponent` are slightly different.
 In this case, `App.js` is importing files in the same directory, like
 `./ExampleComponent`, which allows it to use `<ExampleComponent />` in the
-`render()` method.
+return statement.
 
 OK, then what is happening with `export`? By including the `export` line, we are
 allowing _other_ files to _import_ things from the `App.js` file. There are different types
 of exports, like named exports and default exports, but we will dive deeper into this topic in a later lesson. 
 
 For now, we will just focus on default exports. The line, `export default App` denotes that
-our App class is the main thing we want to export from our `App.js` file. You
+our App function is the main thing we want to export from our `App.js` file. You
 can have only one default export per file. If you take a look at one of the
 other JS files, `index.js`, you can see that at the top of the file, we are
 _importing_ `App` from `App.js` (the `.js` is not
