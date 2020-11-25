@@ -66,7 +66,7 @@ your code, the browser will display those errors instead.
 Open `src/App.js` in a text editor. This file contains a section of code that
 looks _very much_ like HTML:
 
-```html
+```jsx
 <div className="App">
   <header className="App-header">
     {moment().format('MMMM Do YYYY, h:mm:ss a')}
@@ -142,6 +142,12 @@ inside a component is actually _transpiled_ to Javascript code that looks like t
 `React.createElement(tagName, props, children)` (more on that later!). `react` and `moment` 
 are being _imported_ from the `node_modules` folder.
 
+> Version 17 of React, released October 2020, introduced a new JSX transformation. 
+> So instead of `React.createElement()`, the JSX is transpiled into `_jsx()`. You can 
+> read more about the change [here][jsx]. It won't affect how you write your code, but
+> it's good to know how React changes over time! You can find out which version of 
+> React a project is using by looking at the `package.json` file.
+
 The imports for `ExampleComponent` and `TestComponent` are slightly different.
 In this case, `App.js` is importing files in the same directory, like
 `./ExampleComponent`, which allows it to use `<ExampleComponent />` in the
@@ -206,4 +212,4 @@ or connecting it with JavaScript, as it is always the boiler plate code with
 
 
 [setup]: https://help.learn.co/technical-support/local-environment/mac-osx-manual-environment-set-up
-
+[jsx]: https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html
