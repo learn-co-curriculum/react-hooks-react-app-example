@@ -47,8 +47,8 @@ appear in the terminal to access the app. They should look something like the
 following:
 
 ```sh
-Local:            http://localhost:3000/
-On Your Network:  http://192.168.1.5:3000/
+Local:            http://localhost:3000
+On Your Network:  http://192.168.1.5:3000
 ```
 
 You can use the `Local` link to open the app in your own browser. The second is
@@ -80,8 +80,8 @@ looks _very much_ like HTML:
 </div>
 ```
 
-It also has some _JavaScript_ code in it, `moment().format('MMMM Do YYYY,
-h:mm:ss a')`. As it turns out, this is actually _all_ JavaScript. This syntax is
+It also has some _JavaScript_ code in it, `moment().format('MMMM Do YYYY,h:mm:ss a')`. 
+As it turns out, this is actually _all_ JavaScript. This syntax is
 called JSX. It lets us write code that looks nearly identical to HTML, but
 allows us to mix in vanilla JavaScript and other neat things.
 
@@ -208,7 +208,7 @@ or connecting it with JavaScript, as it is always the boiler plate code with
 
 ## Resources
 
-- [Mac OSX Environment Set Up][setup]
+- [Mac OS X Environment Set Up][setup]
 
 
 [setup]: https://help.learn.co/technical-support/local-environment/mac-osx-manual-environment-set-up
