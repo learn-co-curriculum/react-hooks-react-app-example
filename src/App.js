@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import ExampleComponent from './ExampleComponent'
-// import TestComponent from './TestComponent'
+import TestComponent from './TestComponent'
 
 // Add your code own within the return statement
 
@@ -10,7 +10,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        {moment().format('MMMM Do YYYY, hh:mm:ss a')}
+        Now
       </header>
       <p className="App-intro">
         In React apps, we write JSX - it looks like HTML, and uses a lot of HTML syntax.
@@ -18,7 +18,7 @@ function App() {
         allows us to add in components, which are separate, self-contained chunks of JSX.
       </p>
       <ExampleComponent />
-
+      <TestComponent />
     </div>
   );
 }
