@@ -1,3 +1,4 @@
+import '@testing-library/jest-dom';
 import { expect } from 'chai';
 import React from 'react'
 import moment from 'moment'
