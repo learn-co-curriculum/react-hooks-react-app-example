@@ -47,3 +47,6 @@ yarn.lock
 
 # Ignore DS_STORE
 .DS_Store
+
+# Ignore ESLint files
+.eslintcache
