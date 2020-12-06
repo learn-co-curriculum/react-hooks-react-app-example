@@ -179,7 +179,22 @@ Inside `index.js` is some regular JavaScript, `document.getElementById('root')`.
 Even though React is a modern, complex framework, it still relies on a regular
 `index.html` file to load the JavaScript! The file can be found in the `public`
 folder. Take a look at it and try identify how `public/index.html` is connected
-to `src/index.js`
+to `src/index.js`.
+
+## Debugging Components
+
+React has a great set of developer tools that make it easier to view our
+components in the browser and debug what's happening under the hood. Install the
+React Developer Tools [Chrome Extension][devtools-chrome] or
+[Firefox Extension][devtools-firefox]. Here is the [readme][devtools-readme] for
+the extension.
+
+After installing, go to `http://localhost:3000` to view our React application.
+Then open your browser's developer tools, and find the **Components** tab. Here,
+you'll see the component hierarchy with information about all the components
+we're using so far in the app!
+
+![React Developer Tools Screenshot](devtools.png)
 
 ## Deliverables
 
@@ -213,3 +228,6 @@ or connecting it with JavaScript, as it is always the boiler plate code with
 
 [setup]: https://help.learn.co/technical-support/local-environment/mac-osx-manual-environment-set-up
 [jsx]: https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html
+[devtools-chrome]: https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en
+[devtools-firefox]: https://addons.mozilla.org/en-US/firefox/addon/react-devtools/
+[devtools-readme]: https://www.npmjs.com/package/react-devtools
