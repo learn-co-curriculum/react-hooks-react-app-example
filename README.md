@@ -6,7 +6,8 @@ Before we dive in and start working on specific parts of a React project, let's
 take a look at a simple React app so we can understand it at a high level.
 
 In this lesson, we will start with a basic React app, examine the default
-directory structure and gain a better understanding of how these apps are built.
+directory structure, and gain a better understanding of how these apps are
+built.
 
 ## Objectives
 
@@ -52,7 +53,9 @@ On Your Network:  http://192.168.1.5:3000
 ```
 
 You can use the `Local` link to open the app in your own browser. The second is
-for any _other_ computers on your network that you want to access your app from.
+for any _other_ computers on your network that you want to access your app from
+(this is particularly useful if you want to test out your app in a mobile
+browser on your phone).
 
 If everything has worked correctly, you should see a page with the exact time it
 was loaded, along with a small amount of text and a GIF.
@@ -61,29 +64,73 @@ If we make any changes to our app while the server is running, it will 'hot
 reload,' and update the app in the browser. If there are app-breaking errors in
 your code, the browser will display those errors instead.
 
-## Reading `App.js`
+We'll start by exploring the JavaScript code for this sample app in the `src`
+directory.
 
-Open `src/App.js` in a text editor. This file contains a section of code that
-looks _very much_ like HTML:
+## index.js
+
+The "entry point" into our application - the first JavaScript code that will run
+when our app starts up - is in the `src/index.js` file. Open that file up in
+your text editor. Inside, you'll see something like this:
+
+```js
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+
+ReactDOM.render(<App />, document.getElementById("root"));
+```
+
+We'll talk about the `import` statements in a bit, but for now, let's have a
+look at `ReactDOM.render()`.
+
+This function comes from the `react-dom` npm package. It takes in two arguments:
+
+- A **React component** to render (typically, we'll render our top-level `App`
+  component here).
+- A **DOM element** where we want that component to be rendered (a `div` with
+  the ID of `root`).
+
+`ReactDOM.render()` will always be used in your applications. This one small
+function is how the rest of our application -- all the components we'll write --
+will eventually make its way onto the DOM!
+
+Even though React is a modern, complex framework, it still relies on a regular
+`index.html` file to load the JavaScript! The file can be found in the `public`
+folder. Take a look at it and try identify how `public/index.html` is connected
+to `src/index.js`.
+
+In general, when you're given a React project to work with, it's a good idea to
+start by reading the `index.js` and work your way down from there into the rest
+of the components.
+
+## `App.js`
+
+Next, open up `src/App.js` in a text editor. This file contains our `App`
+component. Within the `App` component is a section of code that looks _very
+much_ like HTML:
 
 ```jsx
 <div className="App">
   <header className="App-header">
-    {moment().format('MMMM Do YYYY, h:mm:ss a')}
+    {moment().format("MMMM Do YYYY, h:mm:ss a")}
   </header>
   <p className="App-intro">
-    In React apps, we write JSX - it looks like HTML, and uses a lot of HTML syntax.
-    JSX lets us include JavaScript functions right along with the HTML, and also
-    allows us to add in components, which are separate, self-contained chunks of JSX.
+    In React apps, we write JSX - it looks like HTML, and uses a lot of HTML
+    syntax. JSX lets us include JavaScript functions right along with the HTML,
+    and also allows us to add in components, which are separate, self-contained
+    chunks of JSX.
   </p>
   <ExampleComponent />
 </div>
 ```
 
-It also has some _JavaScript_ code in it, `moment().format('MMMM Do YYYY,h:mm:ss a')`. 
-As it turns out, this is actually _all_ JavaScript. This syntax is
-called JSX. It lets us write code that looks nearly identical to HTML, but
-allows us to mix in vanilla JavaScript and other neat things.
+There's also some _JavaScript_ code mixed in with this HTML-like syntax:
+`moment().format('MMMM Do YYYY,h:mm:ss a')`.
+
+As it turns out, this is actually _all_ JavaScript. This syntax is called JSX.
+It lets us write code that looks nearly identical to HTML, but allows us to mix
+in vanilla JavaScript and other neat things.
 
 Reading through the JSX code, we've got one `div` that contains three child
 elements, `<header>`, `<p>` and `<ExampleComponent />`. In your browser, _these_
@@ -99,7 +146,7 @@ contents of the components. If you copy and paste `<ExampleComponent />` so it
 is listed two times in a row, _two_ GIFs will appear on the page. Try this now.
 
 What about the rest of `App.js`, though? Moving out from the middle, we see this
-JSX code is the _return_ value of a function called App:
+JSX code is the _return_ value of a function called `App`:
 
 ```js
 function App() {
@@ -110,9 +157,8 @@ function App() {
 }
 ```
 
-
 The key thing to understand is that all of the _visible content_ of our app is
-returned from this App function.
+returned from this `App` function.
 
 We've already seen that it is possible to have multiple files that contain
 visible content, i.e., by using both `App` and `ExampleComponent`.
@@ -121,32 +167,38 @@ level, the _parent component_ of our React app content.
 
 ## Importing, Exporting, and the Component Chain
 
-There are two other things in the `App.js` file we haven't touched on:
+There are two other sections in the `App.js` file we haven't touched on:
 
 ```js
-import React from 'react'
-import moment from 'moment'
-import ExampleComponent from './ExampleComponent'
-import TestComponent from './TestComponent'
+import React from "react";
+import moment from "moment";
+import ExampleComponent from "./ExampleComponent";
+import TestComponent from "./TestComponent";
 
-// function App() { etc
+// function App() { etc }
 
-export default App
+export default App;
 ```
 
 `react` and `moment` are both npm packages, so what is happening here? `App.js`
-is _pulling in_ specific content from these two packages! You can see in the App
-function that `moment` is both being used in the return statement. `react` is also
-being used, even though you can't see it written in the code - anywhere you write JSX 
-inside a component is actually _transpiled_ to Javascript code that looks like this: 
-`React.createElement(tagName, props, children)` (more on that later!). `react` and `moment` 
-are being _imported_ from the `node_modules` folder.
+is _pulling in_ specific content from these two packages! `react` and `moment`
+are being _imported_ from the `node_modules` folder, which was created when we
+ran `npm install`.
 
-> Version 17 of React, released October 2020, introduced a new JSX transformation. 
-> So instead of `React.createElement()`, the JSX is transpiled into `_jsx()`. You can 
-> read more about the change [here][jsx]. It won't affect how you write your code, but
-> it's good to know how React changes over time! You can find out which version of 
-> React a project is using by looking at the `package.json` file.
+You can see in the App function that `moment` is both being used in the return
+statement when we call `moment().format(...)`. `react` is also being used, even
+though you can't see it written in the code! Anywhere you write JSX inside a
+component is actually _transpiled_ to JavaScript code that looks like this:
+`React.createElement(tagName, props, children)` (more on that later).
+
+> Version 17 of React, released October 2020, introduced a new JSX
+> transformation. So instead of `React.createElement()`, the JSX is transpiled
+> into `_jsx()`. You can read more about the change [here][jsx].
+
+> With React 17, you can actually _omit_ the line `import React from "react"` in
+> your component files, and they'll still work just fine. You can find out which
+> version of React a project is using by looking at `dependencies` section of the
+> `package.json` file.
 
 The imports for `ExampleComponent` and `TestComponent` are slightly different.
 In this case, `App.js` is importing files in the same directory, like
@@ -154,19 +206,20 @@ In this case, `App.js` is importing files in the same directory, like
 return statement.
 
 OK, then what is happening with `export`? By including the `export` line, we are
-allowing _other_ files to _import_ things from the `App.js` file. There are different types
-of exports, like named exports and default exports, but we will dive deeper into this topic in a later lesson. 
+allowing _other_ files to _import_ things from the `App.js` file. There are
+different types of exports, like named exports and default exports, but we will
+dive deeper into this topic in a later lesson.
 
-For now, we will just focus on default exports. The line, `export default App` denotes that
-our App function is the main thing we want to export from our `App.js` file. You
-can have only one default export per file. If you take a look at one of the
-other JS files, `index.js`, you can see that at the top of the file, we are
-_importing_ `App` from `App.js` (the `.js` is not
-included, but still implied). This is the syntax to import something that is the
-default export of another file:
+For now, we will just focus on default exports. The line, `export default App`
+denotes that our `App` function is the main thing we want to export from our
+`App.js` file. You can have only one default export per file. If you take a look
+at one of the other JS files, `index.js`, you can see that at the top of the
+file, we are _importing_ `App` from `App.js` (the `.js` is not included, but
+still implied). This is the syntax to import something that is the default
+export of another file:
 
 ```js
-import App from './App';
+import App from "./App";
 ```
 
 This structure of importing and exporting allows for files to 'chain' together.
@@ -175,11 +228,6 @@ it), and is imported into `App.js`. Additionally, `App.js` is imported into
 `index.js`.
 
 The `index.js` file doesn't have an export. It is the 'top' of this chain.
-Inside `index.js` is some regular JavaScript, `document.getElementById('root')`.
-Even though React is a modern, complex framework, it still relies on a regular
-`index.html` file to load the JavaScript! The file can be found in the `public`
-folder. Take a look at it and try identify how `public/index.html` is connected
-to `src/index.js`.
 
 ## Debugging Components
 
@@ -201,12 +249,16 @@ we're using so far in the app!
 There are three tests to pass in this lesson. They are all related to the
 content within `App.js`.
 
-1. Replace the contents of the `header` element so that, instead of a time, it just says 'Now'
+1. Replace the contents of the `header` element so that, instead of a time, it
+   just says 'Now'
 2. Make sure to include `<ExampleComponent />` (if you have removed it)
-3. Add in a _new_ component, `<TestComponent />`, just below `<ExampleComponent />`
+3. Add in a _new_ component, `<TestComponent />`, just below
+   `<ExampleComponent />`, in the `App.js` file
 
-You can open two terminal tabs to both run `npm start` _and_ test the lab using
-`learn` or `npm test`.
+When working on React labs, it's helpful to have two terminal tabs open:
+
+- In the first tab, run `npm start` to run your React app in the browser
+- In the second tab, run `learn test` or `npm test` to see the test output
 
 ## Conclusion
 
@@ -224,7 +276,6 @@ or connecting it with JavaScript, as it is always the boiler plate code with
 ## Resources
 
 - [Mac OS X Environment Set Up][setup]
-
 
 [setup]: https://help.learn.co/technical-support/local-environment/mac-osx-manual-environment-set-up
 [jsx]: https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html
