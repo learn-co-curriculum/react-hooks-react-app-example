@@ -73,7 +73,7 @@ The "entry point" into our application - the first JavaScript code that will run
 when our app starts up - is in the `src/index.js` file. Open that file up in
 your text editor. Inside, you'll see something like this:
 
-```js
+```jsx
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
