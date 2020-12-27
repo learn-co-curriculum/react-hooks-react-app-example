@@ -15,7 +15,7 @@ built.
 - Gain an overview of how the files interact
 - Practice writing your first React component
 
-#### A Note For In-Browser IDE Users
+### A Note For In-Browser IDE Users
 
 In order to work on React apps, we create a temporary server in the terminal
 that displays the app in your browser. This server will not work if you are
@@ -92,8 +92,8 @@ This function comes from the `react-dom` npm package. It takes in two arguments:
   the ID of `root`).
 
 `ReactDOM.render()` will always be used in your applications. This one small
-function is how the rest of our application -- all the components we'll write --
-will eventually make its way onto the DOM!
+function is how the rest of our application &mdash; all the components we'll
+write &mdash; will eventually make its way onto the DOM!
 
 Even though React is a modern, complex framework, it still relies on a regular
 `index.html` file to load the JavaScript! The file can be found in the `public`
@@ -112,9 +112,7 @@ much_ like HTML:
 
 ```jsx
 <div className="App">
-  <header className="App-header">
-    {moment().format("MMMM Do YYYY, h:mm:ss a")}
-  </header>
+  <h1>{format(new Date(), "MMMM do yyyy, h:mm:ss a")}</h1>
   <p className="App-intro">
     In React apps, we write JSX - it looks like HTML, and uses a lot of HTML
     syntax. JSX lets us include JavaScript functions right along with the HTML,
@@ -126,15 +124,15 @@ much_ like HTML:
 ```
 
 There's also some _JavaScript_ code mixed in with this HTML-like syntax:
-`moment().format('MMMM Do YYYY,h:mm:ss a')`.
+`format(new Date(), "MMMM do yyyy, h:mm:ss a")`.
 
 As it turns out, this is actually _all_ JavaScript. This syntax is called JSX.
 It lets us write code that looks nearly identical to HTML, but allows us to mix
 in vanilla JavaScript and other neat things.
 
 Reading through the JSX code, we've got one `div` that contains three child
-elements, `<header>`, `<p>` and `<ExampleComponent />`. In your browser, _these_
-are the elements being displayed! The `<header>` provides a timestamp of the
+elements, `<h1>`, `<p>` and `<ExampleComponent />`. In your browser, _these_
+are the elements being displayed! The `<h1>` provides a timestamp of the
 exact time the app was loaded. The `<p>` section includes the brief text on JSX.
 
 The `ExampleComponent` contains the sunglasses GIF. In the `src` folder, take a
@@ -171,7 +169,7 @@ There are two other sections in the `App.js` file we haven't touched on:
 
 ```js
 import React from "react";
-import moment from "moment";
+import { format } from "date-fns";
 import ExampleComponent from "./ExampleComponent";
 import TestComponent from "./TestComponent";
 
@@ -180,21 +178,21 @@ import TestComponent from "./TestComponent";
 export default App;
 ```
 
-`react` and `moment` are both npm packages, so what is happening here? `App.js`
-is _pulling in_ specific content from these two packages! `react` and `moment`
+`react` and `date-fns` are both npm packages, so what is happening here? `App.js`
+is _pulling in_ specific content from these two packages! `react` and `date-fns`
 are being _imported_ from the `node_modules` folder, which was created when we
 ran `npm install`.
 
-You can see in the App function that `moment` is both being used in the return
-statement when we call `moment().format(...)`. `react` is also being used, even
-though you can't see it written in the code! Anywhere you write JSX inside a
-component is actually _transpiled_ to JavaScript code that looks like this:
-`React.createElement(tagName, props, children)` (more on that later).
+You can see in the `App` function that `format` from the `date-fns` library is
+being used in the return statement when we call `format(...)`. `react` is also
+being used, even though you can't see it written in the code! Anywhere you write
+JSX inside a component is actually _transpiled_ to JavaScript code that looks
+like this: `React.createElement(tagName, props, children)` (more on that later).
 
 > Version 17 of React, released October 2020, introduced a new JSX
 > transformation. So instead of `React.createElement()`, the JSX is transpiled
 > into `_jsx()`. You can read more about the change [here][jsx].
-
+>
 > With React 17, you can actually _omit_ the line `import React from "react"` in
 > your component files, and they'll still work just fine. You can find out which
 > version of React a project is using by looking at `dependencies` section of the
@@ -247,9 +245,9 @@ we're using so far in the app!
 ## Deliverables
 
 There are three tests to pass in this lesson. They are all related to the
-content within `App.js`.
+content within `src/components/App.js`.
 
-1. Replace the contents of the `header` element so that, instead of a time, it
+1. Replace the contents of the `h1` element so that, instead of a time, it
    just says 'Now'
 2. Make sure to include `<ExampleComponent />` (if you have removed it)
 3. Add in a _new_ component, `<TestComponent />`, just below
