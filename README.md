@@ -76,7 +76,7 @@ your text editor. Inside, you'll see something like this:
 ```jsx
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
+import App from "./components/App";
 
 ReactDOM.render(<App />, document.getElementById("root"));
 ```
@@ -104,9 +104,9 @@ In general, when you're given a React project to work with, it's a good idea to
 start by reading the `index.js` and work your way down from there into the rest
 of the components.
 
-## `App.js`
+## App.js
 
-Next, open up `src/App.js` in a text editor. This file contains our `App`
+Next, open up `src/components/App.js` in a text editor. This file contains our `App`
 component. Within the `App` component is a section of code that looks _very
 much_ like HTML:
 
@@ -274,6 +274,8 @@ or connecting it with JavaScript, as it is always the boiler plate code with
 ## Resources
 
 - [Mac OS X Environment Set Up][setup]
+- [React DevTools - Chrome][devtools-chrome]
+- [React DevTools - Firefox][devtools-firefox]
 
 [setup]: https://help.learn.co/technical-support/local-environment/mac-osx-manual-environment-set-up
 [jsx]: https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html
