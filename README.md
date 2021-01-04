@@ -240,7 +240,7 @@ Then open your browser's developer tools, and find the **Components** tab. Here,
 you'll see the component hierarchy with information about all the components
 we're using so far in the app!
 
-![React Developer Tools Screenshot](devtools.png)
+![React Developer Tools Screenshot](https://raw.githubusercontent.com/learn-co-curriculum/react-hooks-app-example/master/devtools.png)
 
 ## Deliverables
 
