@@ -1,28 +1,20 @@
 # A React App Example
 
+## Learning Goals
+
+- Understand the folder structure and key files for running a React application
+- Write a basic React component
+- Debug React components using the React Developer Tools
+
 ## Overview
 
 Before we dive in and start working on specific parts of a React project, let's
-take a look at a simple React app so we can understand it at a high level.
+take a look at a simple React application so we can understand it at a high
+level.
 
 In this lesson, we will start with a basic React app, examine the default
 directory structure, and gain a better understanding of how these apps are
 built.
-
-## Objectives
-
-- See an example of a basic React app
-- Gain an overview of how the files interact
-- Practice writing your first React component
-
-### A Note For In-Browser IDE Users
-
-In order to work on React apps, we create a temporary server in the terminal
-that displays the app in your browser. This server will not work if you are
-using the in-browser Learn IDE. If you are currently using the in-browser IDE,
-you will need to begin using your computer's local environment. If you are using
-a Mac, you can follow [these instructions][setup] for setting everything up
-locally.
 
 ## Starting Up a React App
 
@@ -69,9 +61,9 @@ directory.
 
 ## index.js
 
-The "entry point" into our application - the first JavaScript code that will run
-when our app starts up - is in the `src/index.js` file. Open that file up in
-your text editor. Inside, you'll see something like this:
+The "entry point" into our application &mdash; the first JavaScript code that
+will run when our app starts up &mdash; is in the `src/index.js` file. Open that
+file up in your text editor. Inside, you'll see something like this:
 
 ```jsx
 import React from "react";
@@ -163,7 +155,7 @@ visible content, i.e., by using both `App` and `ExampleComponent`.
 `ExampleComponent`, however, is used within `App`. `App` is at the top-most
 level, the _parent component_ of our React app content.
 
-## Importing, Exporting, and the Component Chain
+## Importing, Exporting, and the Dependency Tree
 
 There are two other sections in the `App.js` file we haven't touched on:
 
@@ -220,12 +212,13 @@ export of another file:
 import App from "./App";
 ```
 
-This structure of importing and exporting allows for files to 'chain' together.
-`ExampleComponent.js` has an `export` statement as well (take the time to locate
-it), and is imported into `App.js`. Additionally, `App.js` is imported into
-`index.js`.
+This structure of importing and exporting allows for files create a 'tree' of
+dependencies. `ExampleComponent.js` has an `export` statement as well (take the
+time to locate it), and is imported into `App.js`. Additionally, `App.js` is
+imported into `index.js`.
 
-The `index.js` file doesn't have an export. It is the 'top' of this chain.
+The `index.js` file doesn't have an export. It is the 'top' of this dependency
+tree.
 
 ## Debugging Components
 
@@ -267,9 +260,9 @@ all of our creative energy will be spent.
 
 This file structure is used by Facebook, the creators of React, and is what
 `create-react-app` automatically generates. Using this structure, a lot of
-set-up is abstracted away. We do not need to deal with writing the HTML document
-or connecting it with JavaScript, as it is always the boiler plate code with
-`index.html`, `index.js`, and `App.js`.
+set-up is abstracted away. We have all the boilerplate code in place in the
+`index.html` and `index.js` files so that we can start focusing on writing the
+core functionality of our app using components, like in `App.js`.
 
 ## Resources
 
