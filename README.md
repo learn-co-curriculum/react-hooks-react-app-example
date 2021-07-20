@@ -212,7 +212,7 @@ export of another file:
 import App from "./App";
 ```
 
-This structure of importing and exporting allows for files create a 'tree' of
+This structure of importing and exporting allows for files to create a 'tree' of
 dependencies. `ExampleComponent.js` has an `export` statement as well (take the
 time to locate it), and is imported into `App.js`. Additionally, `App.js` is
 imported into `index.js`.
