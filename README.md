@@ -61,8 +61,8 @@ directory.
 
 ## index.js
 
-The "entry point" into our application &mdash; the first JavaScript code that
-will run when our app starts up &mdash; is in the `src/index.js` file. Open that
+The "entry point" into our application — the first JavaScript code that
+will run when our app starts up — is in the `src/index.js` file. Open that
 file up in your text editor. Inside, you'll see something like this:
 
 ```jsx
@@ -84,8 +84,8 @@ This function comes from the `react-dom` npm package. It takes in two arguments:
   the ID of `root`).
 
 `ReactDOM.render()` will always be used in your applications. This one small
-function is how the rest of our application &mdash; all the components we'll
-write &mdash; will eventually make its way onto the DOM!
+function is how the rest of our application — all the components we'll
+write — will eventually make its way onto the DOM!
 
 Even though React is a modern, complex framework, it still relies on a regular
 `index.html` file to load the JavaScript! The file can be found in the `public`
