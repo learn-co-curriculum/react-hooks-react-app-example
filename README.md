@@ -3,10 +3,10 @@
 ## Learning Goals
 
 - Understand the folder structure and key files for running a React application
-- Write a basic React component
+- Explore the structure of a basic React component
 - Debug React components using the React Developer Tools
 
-## Overview
+## Introduction
 
 Before we dive in and start working on specific parts of a React project, let's
 take a look at a simple React application so we can understand it at a high
@@ -34,10 +34,9 @@ Next, we need to start up a server for the app to run on:
 npm start
 ```
 
-This will host the app and open a browser window to display it. If the browser
-doesn't open, but the server started correctly, you can use the links that
-appear in the terminal to access the app. They should look something like the
-following:
+This will host the app and open a browser window to display it. If the server
+started correctly but the browser doesn't open, you can use the links that
+appear in the terminal to access the app. They should look something like this:
 
 ```sh
 Local:            http://localhost:3000
@@ -63,12 +62,13 @@ directory.
 
 The "entry point" into our application — the first JavaScript code that
 will run when our app starts up — is in the `src/index.js` file. Open that
-file up in your text editor. Inside, you'll see something like this:
+file in your text editor. Inside, you'll see something like this:
 
 ```jsx
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/App";
+import "./index.css";
 
 ReactDOM.render(<App />, document.getElementById("root"));
 ```
@@ -80,8 +80,8 @@ This function comes from the `react-dom` npm package. It takes in two arguments:
 
 - A **React component** to render (typically, we'll render our top-level `App`
   component here).
-- A **DOM element** where we want that component to be rendered (a `div` with
-  the ID of `root`).
+- A **DOM element** where we want that component to be rendered (by convention,
+  a `div` with the ID of `root`).
 
 `ReactDOM.render()` will always be used in your applications. This one small
 function is how the rest of our application — all the components we'll
@@ -89,12 +89,11 @@ write — will eventually make its way onto the DOM!
 
 Even though React is a modern, complex framework, it still relies on a regular
 `index.html` file to load the JavaScript! The file can be found in the `public`
-folder. Take a look at it and try identify how `public/index.html` is connected
-to `src/index.js`.
+folder. Take a look at it now.
 
 In general, when you're given a React project to work with, it's a good idea to
-start by reading the `index.js` and work your way down from there into the rest
-of the components.
+start by reading the `index.js` file then work your way down from there into the
+rest of the components.
 
 ## App.js
 
@@ -123,16 +122,16 @@ It lets us write code that looks nearly identical to HTML, but allows us to mix
 in vanilla JavaScript and other neat things.
 
 Reading through the JSX code, we've got one `div` that contains three child
-elements, `<h1>`, `<p>` and `<ExampleComponent />`. In your browser, _these_
-are the elements being displayed! The `<h1>` provides a timestamp of the
-exact time the app was loaded. The `<p>` section includes the brief text on JSX.
+elements, `<h1>`, `<p>` and `<ExampleComponent />`. In your browser, _these_ are
+the elements being displayed! The `<h1>` provides a timestamp of the exact time
+the app was loaded, and the `<p>` section includes the brief text on JSX.
 
 The `ExampleComponent` contains the sunglasses GIF. In the `src` folder, take a
 look at `ExampleComponent.js`. You'll see a file very similar to `App.js`,
 containing `<img>` and `<p>` elements.
 
 By including `<ExampleComponent />` in `App.js`'s JSX, we are able to use the
-contents of the components. If you copy and paste `<ExampleComponent />` so it
+contents of the component. If you copy and paste `<ExampleComponent />` so it
 is listed two times in a row, _two_ GIFs will appear on the page. Try this now.
 
 What about the rest of `App.js`, though? Moving out from the middle, we see this
@@ -153,7 +152,7 @@ returned from this `App` function.
 We've already seen that it is possible to have multiple files that contain
 visible content, i.e., by using both `App` and `ExampleComponent`.
 `ExampleComponent`, however, is used within `App`. `App` is at the top-most
-level, the _parent component_ of our React app content.
+level; it is the _parent component_ of our React app content.
 
 ## Importing, Exporting, and the Dependency Tree
 
@@ -163,7 +162,6 @@ There are two other sections in the `App.js` file we haven't touched on:
 import React from "react";
 import { format } from "date-fns";
 import ExampleComponent from "./ExampleComponent";
-import TestComponent from "./TestComponent";
 
 // function App() { etc }
 
@@ -178,7 +176,7 @@ ran `npm install`.
 You can see in the `App` function that `format` from the `date-fns` library is
 being used in the return statement when we call `format(...)`. `react` is also
 being used, even though you can't see it written in the code! Anywhere you write
-JSX inside a component is actually _transpiled_ to JavaScript code that looks
+JSX inside a component, it is actually _transpiled_ to JavaScript code that looks
 like this: `React.createElement(tagName, props, children)` (more on that later).
 
 > Version 17 of React, released October 2020, introduced a new JSX
@@ -190,10 +188,10 @@ like this: `React.createElement(tagName, props, children)` (more on that later).
 > version of React a project is using by looking at `dependencies` section of the
 > `package.json` file.
 
-The imports for `ExampleComponent` and `TestComponent` are slightly different.
-In this case, `App.js` is importing files in the same directory, like
-`./ExampleComponent`, which allows it to use `<ExampleComponent />` in the
-return statement.
+The import for `ExampleComponent` is slightly different. Rather than importing
+code from a node package, here we are importing something from within our app's
+file tree. By importing `./ExampleComponent`, we make `<ExampleComponent />`
+available for use in the `App` component's return statement.
 
 OK, then what is happening with `export`? By including the `export` line, we are
 allowing _other_ files to _import_ things from the `App.js` file. There are
@@ -203,10 +201,9 @@ dive deeper into this topic in a later lesson.
 For now, we will just focus on default exports. The line, `export default App`
 denotes that our `App` function is the main thing we want to export from our
 `App.js` file. You can have only one default export per file. If you take a look
-at one of the other JS files, `index.js`, you can see that at the top of the
-file, we are _importing_ `App` from `App.js` (the `.js` is not included, but
-still implied). This is the syntax to import something that is the default
-export of another file:
+at `index.js`, you can see at the top of the file that we are _importing_ `App`
+from `App.js` (the `.js` does not need to be included). This import statement is
+what we use to import something that is the default export of another file:
 
 ```js
 import App from "./App";
@@ -228,10 +225,10 @@ React Developer Tools [Chrome Extension][devtools-chrome] or
 [Firefox Extension][devtools-firefox]. Here is the [readme][devtools-readme] for
 the extension.
 
-After installing, go to `http://localhost:3000` to view our React application.
-Then open your browser's developer tools, and find the **Components** tab. Here,
-you'll see the component hierarchy with information about all the components
-we're using so far in the app!
+After installing, restart your browser, then go to `http://localhost:3000` to
+view our React application. Open your browser's developer tools, and find the
+**Components** tab. Here, you'll see the component hierarchy with information
+about all the components we're using so far in the app!
 
 ![React Developer Tools Screenshot](https://raw.githubusercontent.com/learn-co-curriculum/react-hooks-app-example/master/devtools.png)
 
@@ -242,9 +239,10 @@ content within `src/components/App.js`.
 
 1. Replace the contents of the `h1` element so that, instead of a time, it
    just says 'Now'
-2. Make sure to include `<ExampleComponent />` (if you have removed it)
-3. Add in a _new_ component, `<TestComponent />`, just below
-   `<ExampleComponent />`, in the `App.js` file
+2. If you added a second `<ExampleComponent />`, be sure to remove it
+3. Add in a _new_ component, `<TestComponent />`, just below `<ExampleComponent
+   />`, in the `App.js` file (remember: you will need to **import** the
+   component before you can use it)
 
 When working on React labs, it's helpful to have two terminal tabs open:
 
@@ -253,10 +251,10 @@ When working on React labs, it's helpful to have two terminal tabs open:
 
 ## Conclusion
 
-There is a lot still we haven't touched on, and we will go into greater depth on
-how things work throughout the following lessons. Almost all of our work,
-however, will be done within `App.js` and child components of it. This is where
-all of our creative energy will be spent.
+There is a lot we still haven't touched on, and we will go into greater depth on
+how things work in the following lessons. Almost all of our work, however, will
+be done within `App.js` and child components of it. This is where all of our
+creative energy will be spent.
 
 This file structure is used by Facebook, the creators of React, and is what
 `create-react-app` automatically generates. Using this structure, a lot of
@@ -266,11 +264,9 @@ core functionality of our app using components, like in `App.js`.
 
 ## Resources
 
-- [Mac OS X Environment Set Up][setup]
 - [React DevTools - Chrome][devtools-chrome]
 - [React DevTools - Firefox][devtools-firefox]
 
-[setup]: https://help.learn.co/technical-support/local-environment/mac-osx-manual-environment-set-up
 [jsx]: https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html
 [devtools-chrome]: https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en
 [devtools-firefox]: https://addons.mozilla.org/en-US/firefox/addon/react-devtools/
