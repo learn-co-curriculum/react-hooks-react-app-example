@@ -22,23 +22,23 @@ This lesson has all the necessary parts of a fully working React app. To check
 the app out, fork and clone this lesson onto your computer, navigate into the
 lesson's directory, and run:
 
-```sh
-npm install
+```console
+$ npm install
 ```
 
 This will get and install all the required dependencies for React.
 
 Next, we need to start up a server for the app to run on:
 
-```sh
-npm start
+```console
+$ npm start
 ```
 
 This will host the app and open a browser window to display it. If the server
 started correctly but the browser doesn't open, you can use the links that
 appear in the terminal to access the app. They should look something like this:
 
-```sh
+```console
 Local:            http://localhost:3000
 On Your Network:  http://192.168.1.5:3000
 ```
@@ -240,8 +240,7 @@ content within `src/components/App.js`.
 1. Replace the contents of the `h1` element so that, instead of a time, it
    just says 'Now'
 2. If you added a second `<ExampleComponent />`, be sure to remove it
-3. Add in a _new_ component, `<TestComponent />`, just below `<ExampleComponent
-   />`, in the `App.js` file (remember: you will need to **import** the
+3. Add in a _new_ component, `<TestComponent />`, just below `<ExampleComponent />`, in the `App.js` file (remember: you will need to **import** the
    component before you can use it)
 
 When working on React labs, it's helpful to have two terminal tabs open:
