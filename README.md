@@ -240,8 +240,9 @@ content within `src/components/App.js`.
 1. Replace the contents of the `h1` element so that, instead of a time, it
    just says 'Now'
 2. If you added a second `<ExampleComponent />`, be sure to remove it
-3. Add in a _new_ component, `<TestComponent />`, just below `<ExampleComponent />`, in the `App.js` file (remember: you will need to **import** the
-   component before you can use it)
+3. Add in a _new_ component, `<TestComponent />`, just below
+   `<ExampleComponent />`, in the `App.js` file (remember: you will need to
+   **import** the component before you can use it)
 
 When working on React labs, it's helpful to have two terminal tabs open:
 
