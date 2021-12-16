@@ -18,9 +18,32 @@ built.
 
 ## Starting Up a React App
 
-This lesson has all the necessary parts of a fully working React app. To check
-the app out, fork and clone this lesson onto your computer, navigate into the
-lesson's directory, and run:
+This lesson has all the necessary parts of a fully working React app. First,
+make sure you're running a compatible version of Node. You should be using Node
+16, since Node 17 has some compatibility issues with several JavaScript
+libraries. To check your Node version, run the following, and verify that Node
+16.x.x is installed and is the default version:
+
+```console
+$ nvm list
+
+->     v16.13.0
+        v17.0.1
+         system
+default -> 16 (-> v16.13.0)
+```
+
+If it's not, you can install it and set it as the default with the following
+commands:
+
+```console
+$ nvm install 16
+$ nvm alias default 16
+$ nvm use 16
+```
+
+To check the app out, fork and clone this lesson onto your computer, navigate
+into the lesson's directory, and run:
 
 ```console
 $ npm install
@@ -60,9 +83,9 @@ directory.
 
 ## index.js
 
-The "entry point" into our application — the first JavaScript code that
-will run when our app starts up — is in the `src/index.js` file. Open that
-file in your text editor. Inside, you'll see something like this:
+The "entry point" into our application — the first JavaScript code that will run
+when our app starts up — is in the `src/index.js` file. Open that file in your
+text editor. Inside, you'll see something like this:
 
 ```jsx
 import React from "react";
@@ -84,8 +107,8 @@ This function comes from the `react-dom` npm package. It takes in two arguments:
   a `div` with the ID of `root`).
 
 `ReactDOM.render()` will always be used in your applications. This one small
-function is how the rest of our application — all the components we'll
-write — will eventually make its way onto the DOM!
+function is how the rest of our application — all the components we'll write —
+will eventually make its way onto the DOM!
 
 Even though React is a modern, complex framework, it still relies on a regular
 `index.html` file to load the JavaScript! The file can be found in the `public`
@@ -97,9 +120,9 @@ rest of the components.
 
 ## App.js
 
-Next, open up `src/components/App.js` in a text editor. This file contains our `App`
-component. Within the `App` component is a section of code that looks _very
-much_ like HTML:
+Next, open up `src/components/App.js` in a text editor. This file contains our
+`App` component. Within the `App` component is a section of code that looks
+_very much_ like HTML:
 
 ```jsx
 <div className="App">
@@ -131,8 +154,8 @@ look at `ExampleComponent.js`. You'll see a file very similar to `App.js`,
 containing `<img>` and `<p>` elements.
 
 By including `<ExampleComponent />` in `App.js`'s JSX, we are able to use the
-contents of the component. If you copy and paste `<ExampleComponent />` so it
-is listed two times in a row, _two_ GIFs will appear on the page. Try this now.
+contents of the component. If you copy and paste `<ExampleComponent />` so it is
+listed two times in a row, _two_ GIFs will appear on the page. Try this now.
 
 What about the rest of `App.js`, though? Moving out from the middle, we see this
 JSX code is the _return_ value of a function called `App`:
@@ -168,16 +191,17 @@ import ExampleComponent from "./ExampleComponent";
 export default App;
 ```
 
-`react` and `date-fns` are both npm packages, so what is happening here? `App.js`
-is _pulling in_ specific content from these two packages! `react` and `date-fns`
-are being _imported_ from the `node_modules` folder, which was created when we
-ran `npm install`.
+`react` and `date-fns` are both npm packages, so what is happening here?
+`App.js` is _pulling in_ specific content from these two packages! `react` and
+`date-fns` are being _imported_ from the `node_modules` folder, which was
+created when we ran `npm install`.
 
 You can see in the `App` function that `format` from the `date-fns` library is
 being used in the return statement when we call `format(...)`. `react` is also
 being used, even though you can't see it written in the code! Anywhere you write
-JSX inside a component, it is actually _transpiled_ to JavaScript code that looks
-like this: `React.createElement(tagName, props, children)` (more on that later).
+JSX inside a component, it is actually _transpiled_ to JavaScript code that
+looks like this: `React.createElement(tagName, props, children)` (more on that
+later).
 
 > Version 17 of React, released October 2020, introduced a new JSX
 > transformation. So instead of `React.createElement()`, the JSX is transpiled
@@ -185,8 +209,8 @@ like this: `React.createElement(tagName, props, children)` (more on that later).
 >
 > With React 17, you can actually _omit_ the line `import React from "react"` in
 > your component files, and they'll still work just fine. You can find out which
-> version of React a project is using by looking at `dependencies` section of the
-> `package.json` file.
+> version of React a project is using by looking at `dependencies` section of
+> the `package.json` file.
 
 The import for `ExampleComponent` is slightly different. Rather than importing
 code from a node package, here we are importing something from within our app's
@@ -221,9 +245,9 @@ tree.
 
 React has a great set of developer tools that make it easier to view our
 components in the browser and debug what's happening under the hood. Install the
-React Developer Tools [Chrome Extension][devtools-chrome] or
-[Firefox Extension][devtools-firefox]. Here is the [readme][devtools-readme] for
-the extension.
+React Developer Tools [Chrome Extension][devtools-chrome] or [Firefox
+Extension][devtools-firefox]. Here is the [readme][devtools-readme] for the
+extension.
 
 After installing, restart your browser, then go to `http://localhost:3000` to
 view our React application. Open your browser's developer tools, and find the
@@ -237,8 +261,8 @@ about all the components we're using so far in the app!
 There are three tests to pass in this lesson. They are all related to the
 content within `src/components/App.js`.
 
-1. Replace the contents of the `h1` element so that, instead of a time, it
-   just says 'Now'
+1. Replace the contents of the `h1` element so that, instead of a time, it just
+   says 'Now'
 2. If you added a second `<ExampleComponent />`, be sure to remove it
 3. Add in a _new_ component, `<TestComponent />`, just below
    `<ExampleComponent />`, in the `App.js` file (remember: you will need to
@@ -267,7 +291,10 @@ core functionality of our app using components, like in `App.js`.
 - [React DevTools - Chrome][devtools-chrome]
 - [React DevTools - Firefox][devtools-firefox]
 
-[jsx]: https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html
-[devtools-chrome]: https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en
-[devtools-firefox]: https://addons.mozilla.org/en-US/firefox/addon/react-devtools/
+[jsx]:
+  https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html
+[devtools-chrome]:
+  https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en
+[devtools-firefox]:
+  https://addons.mozilla.org/en-US/firefox/addon/react-devtools/
 [devtools-readme]: https://www.npmjs.com/package/react-devtools
