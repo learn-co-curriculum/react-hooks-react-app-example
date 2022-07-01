@@ -237,12 +237,12 @@ For now, we will just focus on default exports. The line, `export default App`
 denotes that our `App` function is the main thing we want to export from our
 `App.js` file. You can have only one default export per file. If you take a look
 at `index.js`, you can see at the top of the file that we are _importing_ `App`
-from the `App.js` file (the `.js` does not need to be included). This import
-statement is what we use to import something that is the default export of
-another file:
+from the `App.js` file in the `src/components` directory (the `.js` does not
+need to be included). This import statement is what we use to import something
+that is the default export of another file:
 
 ```js
-import App from "./App";
+import App from "./components/App";
 ```
 
 This structure of importing and exporting allows for files to create a 'tree' of
