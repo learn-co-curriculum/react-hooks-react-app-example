@@ -42,9 +42,10 @@ $ nvm alias default 16
 $ nvm use 16
 ```
 
-Next, make sure to download the source code for this lesson. Use the "Fork" link
-at the top of the page to fork and clone this lesson onto your computer. Then
-navigate into the lesson's directory and run:
+Next, make sure to download the source code for this lesson. Use the "OctoCat"
+icon at the top of the page to go to the GitHub repo for this lesson. Fork and
+clone this lesson onto your computer, then navigate into the lesson's directory
+and run:
 
 ```console
 $ npm install
