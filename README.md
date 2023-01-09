@@ -283,8 +283,8 @@ content within `src/components/App.js`.
 
 When working on React labs, it's helpful to have two terminal tabs open:
 
-- In the first tab, run `npm start` to run your React app in the browser
-- In the second tab, run `learn test` or `npm test` to see the test output
+- In the first tab, run `npm start` to run your React app in the browser.
+- In the second tab, run `npm test` to see the test output.
 
 ## Conclusion
 
